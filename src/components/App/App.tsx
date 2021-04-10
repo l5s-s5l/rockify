@@ -1,10 +1,7 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { getData, Artist, Song } from "api/getData";
 import { createUseStyles } from "react-jss";
-import logo from "images/logo.svg";
 import "./App.css";
-
-//https://d3txbfs48hwpcq.cloudfront.net/db.json
 
 const styles = {
   app: {
@@ -35,23 +32,26 @@ const useStyles = createUseStyles(styles, { name: "App" });
 
 function App(): JSX.Element {
   const classes = useStyles();
+  const [data, setData] = useState<Artist[] | Song[] | null>(null);
+
+  const getArtists = async () => {
+    const artists = await getData("artists");
+    setData(artists);
+  };
+
+  useEffect(() => {
+    if (!data) {
+      getArtists();
+    }
+  }, []);
 
   return (
     <div className={classes.app}>
-      <header className={classes.appHeader}>
-        <img src={logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className={classes.appLink}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header className={classes.appHeader}>Rockify</header>
+      <ul>
+        {Array.isArray(data) &&
+          data.map((artist: Artist) => <li key={artist.id}>{artist.name}</li>)}
+      </ul>
     </div>
   );
 }
