@@ -39,6 +39,10 @@ function List(props: List): JSX.Element {
     }
   }, [artist]);
 
+  if (Array.isArray(data) && !data.length) {
+    return <span> no items found</span>;
+  }
+
   return (
     <ul className={classes.list}>
       {Array.isArray(data) &&
