@@ -6,7 +6,7 @@ import ListItem from "./ListItem";
 
 describe("ListItem", () => {
   const song = {
-    id: "mock-id",
+    id: 123,
     name: "mock-name",
     artist: "mock-artist",
     shortname: "mock-shortname",
@@ -18,7 +18,7 @@ describe("ListItem", () => {
   };
 
   const artist = {
-    id: "mock-id",
+    id: 123,
     name: "mock-name",
   };
 
