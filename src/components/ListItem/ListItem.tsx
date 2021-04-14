@@ -22,7 +22,7 @@ function ListItem(props: ListItem): JSX.Element | null {
 
   if (type === ARTIST) {
     return (
-      <Link to={`/artist/${listItem.name}`}>
+      <Link data-testid="link-list-item" to={`/artist/${listItem.name}`}>
         <span className={classes.listItem}>{listItem.name}</span>
       </Link>
     );
@@ -30,7 +30,11 @@ function ListItem(props: ListItem): JSX.Element | null {
 
   if (type === SONG) {
     return (
-      <span className={classes.listItem} onClick={addToList}>
+      <span
+        data-testid="cta-list-item"
+        className={classes.listItem}
+        onClick={addToList}
+      >
         {listItem.name}
       </span>
     );
