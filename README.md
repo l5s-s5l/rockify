@@ -10,7 +10,7 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Runs json-server and serves a json file via [http://localhost:3004](http://localhost:3004)
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
