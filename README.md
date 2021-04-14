@@ -2,7 +2,7 @@
 
 ### `yarn install`
 
-installs all the needed depenedencies
+installs all the needed dependencies
 
 ## Available Scripts
 
