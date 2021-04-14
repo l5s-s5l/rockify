@@ -29,7 +29,7 @@ function List(props: List): JSX.Element {
   };
 
   useEffect(() => {
-    if (!data && !artist) {
+    if (!artist) {
       getArtists();
     }
 
@@ -37,7 +37,7 @@ function List(props: List): JSX.Element {
       setData(null);
       getSongs();
     }
-  }, [type, artist]);
+  }, [artist]);
 
   return (
     <ul className={classes.list}>

@@ -4,8 +4,6 @@ import { styles } from "./App.styles";
 import Routes from "components/Routes";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import List from "components/List";
-import { ARTIST } from "const";
 
 const useStyles = createUseStyles(styles, { name: "App" });
 
@@ -17,7 +15,6 @@ function App(): JSX.Element {
       <div className={classes.app}>
         <header>Rockify</header>
         <Router>
-          <List type={ARTIST} />
           <Routes />
         </Router>
       </div>
