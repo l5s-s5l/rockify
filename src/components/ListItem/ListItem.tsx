@@ -17,7 +17,7 @@ function ListItem(props: ListItem): JSX.Element | null {
   const classes = useStyles();
 
   const addToList = (): void => {
-    console.log("listItem", listItem.name, "is added to the list");
+    alert(`listItem", ${listItem.name}, "is added to you're list`);
   };
 
   if (type === ARTIST) {

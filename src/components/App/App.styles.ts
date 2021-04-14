@@ -1,3 +1,5 @@
+import { color } from "cssVariables";
+
 export const styles = {
   "@global": {
     body: {
@@ -12,6 +14,10 @@ export const styles = {
       padding: 0,
       textIndent: 0,
       listStyle: "none",
+    },
+    a: {
+      color: color.darkGray,
+      textDecoration: "none",
     },
   },
 

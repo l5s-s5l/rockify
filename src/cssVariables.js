@@ -5,3 +5,9 @@ export const color = {
   white: "#fff",
   rockYellow: "#FFE000",
 };
+
+export const fontSize = {
+  small: 14,
+  medium: 24,
+  Large: 32,
+};
