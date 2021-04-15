@@ -24,7 +24,7 @@ export const styles = {
 
     "&::after": {
       content: '" "',
-      //totally not necessary to load this via cloudfront but just for fun
+      //totally not necessary and even inefficient to load this via cloudfront but just as a showcase
       backgroundImage:
         "url(https://dkeivqzgh2yzv.cloudfront.net/fast-forward.svg)",
       width: 20,
