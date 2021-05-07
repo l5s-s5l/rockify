@@ -23,10 +23,7 @@ export const styles = {
     },
 
     "&::after": {
-      content: '" "',
-      //totally not necessary and even inefficient to load this via cloudfront but just as a showcase
-      backgroundImage:
-        "url(https://dkeivqzgh2yzv.cloudfront.net/fast-forward.svg)",
+      content: '" > "',
       width: 20,
       height: "100%",
       position: "absolute",
@@ -34,6 +31,7 @@ export const styles = {
       top: 0,
       backgroundRepeat: "no-repeat",
       backgroundPosition: 0,
+
     },
   },
 };

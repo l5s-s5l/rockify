@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export interface Iartist {
+export interface Artist {
   id?: number;
   name?: string;
 }
 
-export interface Isong {
+export interface Song {
   id?: number;
   name?: string;
   year?: number;
@@ -23,7 +23,7 @@ type DataType = "artists" | "songs";
 export const getData = async (
   type: DataType,
   query?: string
-): Promise<Iartist[] | Isong[]> => {
+): Promise<Artist[] | Song[]> => {
   try {
     const url = query
       ? `http://localhost:3004/${type}?artist=${query}`

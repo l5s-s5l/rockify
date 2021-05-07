@@ -1,17 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import List from "components/List";
-import { SONG, ARTIST } from "const";
+
+import Artist from 'components/pages/Artists';
+import Tracks from 'components/pages/Tracks';
 
 function Routes(): JSX.Element {
   return (
     <Router>
       <Switch>
         <Route exact path={`/`}>
-          <List type={ARTIST} />
+          <Artist />
         </Route>
         <Route path={`/artist/:artist`}>
-          <List type={SONG} />
+          <Tracks />
         </Route>
         <Route> Artist not found </Route>
       </Switch>

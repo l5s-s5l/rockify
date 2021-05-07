@@ -1,13 +1,15 @@
 import React from "react";
-import { Iartist, Isong } from "api/getData";
+import { Artist, Song } from "api/getData";
 import { Link } from "react-router-dom";
 import { styles } from "./ListItem.styles";
 import { createUseStyles } from "react-jss";
-import { SONG, ARTIST } from "const";
+import LinkItem from 'components/LinkItem'
+import { CTA, LINK } from "const";
+import CallToAction from "components/CallToAction";
 
 interface ListItem {
-  listItem: Iartist | Isong;
-  type: typeof SONG | typeof ARTIST;
+  listItem: Artist | Song;
+  type: typeof CTA | typeof LINK;
 }
 
 const useStyles = createUseStyles(styles, { name: "ListItem" });
@@ -16,31 +18,14 @@ function ListItem(props: ListItem): JSX.Element | null {
   const { listItem, type } = props;
   const classes = useStyles();
 
-  const addToList = (): void => {
-    alert(`listItem", ${listItem.name}, "is added to you're list`);
-  };
-
-  if (type === ARTIST) {
-    return (
-      <Link data-testid="link-list-item" to={`/artist/${listItem.name}`}>
-        <span className={classes.listItem}>{listItem.name}</span>
-      </Link>
-    );
-  }
-
-  if (type === SONG) {
-    return (
-      <span
-        data-testid="cta-list-item"
-        className={classes.listItem}
-        onClick={addToList}
-      >
-        {listItem.name}
-      </span>
-    );
-  }
-
-  return null;
+  return (
+    <div className={classes.listItem}>
+      { type === LINK ?
+        <LinkItem name={listItem.name} />
+        :
+        <CallToAction name={listItem.name} />}
+    </div>
+  )
 }
 
 export default ListItem;
