@@ -1,11 +1,13 @@
 import React from "react";
-import { Artist, Song } from "api/getData";
-import { Link } from "react-router-dom";
-import { styles } from "./ListItem.styles";
 import { createUseStyles } from "react-jss";
+import { Artist, Song } from "api/getData";
+import { styles } from "./ListItem.styles";
+
 import LinkItem from 'components/LinkItem'
 import { CTA, LINK } from "const";
 import CallToAction from "components/CallToAction";
+import { useAppSelector, useAppDispatch } from 'hooks/store';
+import { increment } from 'slices/counter';
 
 interface ListItem {
   listItem: Artist | Song;
@@ -14,9 +16,11 @@ interface ListItem {
 
 const useStyles = createUseStyles(styles, { name: "ListItem" });
 
+
 function ListItem(props: ListItem): JSX.Element | null {
   const { listItem, type } = props;
   const classes = useStyles();
+  const dispatch = useAppDispatch();
 
   return (
     <div className={classes.listItem}>
