@@ -1,10 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from 'slices/counter';
+import favouriteListReducer from 'slices/favouriteList';
 
 export const store = configureStore({
     reducer: {
         counter: counterReducer,
+        favourites: favouriteListReducer
     },
+
 });
 
 export type AppDispatch = typeof store.dispatch;
