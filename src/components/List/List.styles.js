@@ -2,7 +2,7 @@ import { color, fontSize } from "cssVariables";
 
 export const styles = {
   list: {
-    padding: 50,
+    padding: [50, 50, 50, 0],
     width: "50vw",
   },
 
