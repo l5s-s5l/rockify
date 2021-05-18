@@ -25,16 +25,5 @@ export const styles = {
     "&:hover": {
       background: color.lightGrey,
     },
-
-    "&::after": {
-      content: '" > "',
-      width: 20,
-      height: "100%",
-      position: "absolute",
-      right: 0,
-      top: 0,
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: 0,
-    },
   },
 };
