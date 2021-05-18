@@ -7,22 +7,25 @@ import { CTA, LINK } from "const";
 import CallToAction from "components/CallToAction";
 
 interface ListItem {
-  listItem: Artist | Song;
+  listItem: Artist | Song | string;
   type: typeof CTA | typeof LINK;
+  contentType?: string | undefined,
 }
 
 const useStyles = createUseStyles(styles, { name: "ListItem" });
 
 function ListItem(props: ListItem): JSX.Element | null {
-  const { listItem, type } = props;
+  const { listItem, type, contentType } = props;
   const classes = useStyles();
+
+  const listValue = typeof listItem === 'string' ? listItem : listItem.name;
 
   return (
     <div className={classes.listItem}>
       { type === LINK ?
-        <LinkItem name={listItem.name} url={`/artist/${listItem.name}`} />
+        <LinkItem name={listValue} url={`/${contentType}/${listValue}`} />
         :
-        <CallToAction name={listItem.name} />}
+        <CallToAction name={listValue} />}
     </div>
   )
 }
