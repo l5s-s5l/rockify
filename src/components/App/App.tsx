@@ -18,7 +18,6 @@ function App(): JSX.Element {
       <Router>
         <Menu />
         <div className={classes.content}>
-          <CreateList />
           <Routes />
         </div>
       </Router>
