@@ -14,13 +14,12 @@ export const favouriteListSlice = createSlice({
     initialState,
     reducers: {
         createFavouriteList: (state, action) => {
-
             state.lists[action.payload] = {};
         },
-        addToFavouriteList: (state, action) => {
+        addToFavouriteList: () => {
             //state.favouriteLists['test'] = action.payload;
         },
-        removeFromFavouriteList: (state) => {
+        removeFromFavouriteList: () => {
             //state.value -= 1;
         },
 
@@ -29,7 +28,7 @@ export const favouriteListSlice = createSlice({
 
 export const { createFavouriteList, addToFavouriteList, removeFromFavouriteList } = favouriteListSlice.actions;
 
-export const selectAllFavouriteLists = (state: RootState) => {
+export const selectAllFavouriteLists = (state: RootState): string[] => {
     const lists: string[] = []
     Object.keys(state.favourites.lists).map(function (key) {
         lists.push(key)
@@ -37,11 +36,7 @@ export const selectAllFavouriteLists = (state: RootState) => {
     return lists;
 }
 
-// export const selectFavouriteList = (state: RootState, listKey: string) => {
-//     return state.favourites.lists[listKey]
-// }
-
-export const selectFavouriteList = (state: RootState, listKey: string) => {
+export const selectFavouriteList = (state: RootState, listKey: string): string => {
     return state.favourites.lists[listKey]
 }
 
