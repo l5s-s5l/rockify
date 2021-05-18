@@ -20,7 +20,7 @@ function CreateList(): JSX.Element {
   return (
     <>
       <input className={classes.input} ref={inputRef} />
-      <button className={classes.button} onClick={createNewFavouriteList}> New Favourite list </button>
+      <button className={classes.button} onClick={createNewFavouriteList}> Add list </button>
     </>
   );
 }
