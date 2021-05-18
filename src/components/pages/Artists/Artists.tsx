@@ -13,7 +13,7 @@ function Artists(): JSX.Element {
     getArtists();
   }, []);
 
-  return <List data={data} type={LINK} />
+  return <List data={data} type={LINK} contentType='artist' />
 }
 
 export default Artists;
