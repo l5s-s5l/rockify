@@ -6,6 +6,10 @@ export const styles = {
     width: "50vw",
   },
 
+  placeholder: {
+    marginTop: 50,
+  },
+
   listItem: {
     fontSize: fontSize.medium,
     fontWeight: 800,
@@ -31,7 +35,6 @@ export const styles = {
       top: 0,
       backgroundRepeat: "no-repeat",
       backgroundPosition: 0,
-
     },
   },
 };
