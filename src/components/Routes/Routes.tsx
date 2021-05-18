@@ -3,20 +3,16 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Artist from 'components/pages/Artists';
 import Tracks from 'components/pages/Tracks';
+import Favourites from 'components/pages/Favourites';
 
 function Routes(): JSX.Element {
   return (
-    <Router>
-      <Switch>
-        <Route exact path={`/`}>
-          <Artist />
-        </Route>
-        <Route path={`/artist/:artist`}>
-          <Tracks />
-        </Route>
-        <Route> Artist not found </Route>
-      </Switch>
-    </Router>
+    <Switch>
+      <Route exact path="/" component={Artist} />
+      <Route path="/favourites" component={Favourites} />
+      <Route path={`/artist/:artist`} component={Tracks} />
+      <Route> Artist not found </Route>
+    </Switch>
   );
 }
 
