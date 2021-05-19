@@ -5,8 +5,6 @@ import Routes from "components/Routes";
 import { Provider } from 'react-redux';
 import { store } from 'store';
 import { BrowserRouter as Router } from "react-router-dom";
-import CreateList from 'components/CreateList'
-import LinkItem from 'components/LinkItem'
 import Menu from 'components/Menu'
 
 const useStyles = createUseStyles(styles, { name: "App" });

@@ -6,10 +6,11 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles(styles, { name: "ListItem" });
 
+
 function CreateList(): JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
-  const dispatch = useAppDispatch();
   const classes = useStyles();
+  const dispatch = useAppDispatch();
 
   const createNewFavouriteList = (): void => {
     if (inputRef?.current?.value.length) {

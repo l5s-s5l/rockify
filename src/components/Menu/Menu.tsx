@@ -1,9 +1,8 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LinkItem from "components/LinkItem";
 import { createUseStyles } from "react-jss";
 import { styles } from "./Menu.styles"
-import classes from "*.module.css";
 
 const useStyles = createUseStyles(styles, { name: "Menu" });
 

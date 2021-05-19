@@ -1,39 +1,48 @@
 import React, { useRef } from "react";
 import { useAppSelector } from 'hooks/store';
-import { selectAllFavouriteLists } from 'slices/favouriteList'
-import { ContextMenu, MenuItem } from "react-contextmenu";
+import { selectAllFavouriteLists, addToFavouriteList } from 'slices/favouriteList'
+import { useAppDispatch } from 'hooks/store';
 import LinkItem from "components/LinkItem"
+import { Menu, Item } from "react-contexify";
+import "react-contexify/dist/ReactContexify.css";
 
 interface AddToFavourite {
   id: string | undefined;
 }
 
+interface FavouriteData {
+  data: {
+    list: string,
+    song: string,
+  }
+}
+
 function AddToFavourite(props: AddToFavourite): JSX.Element | null {
   const { id } = props;
+
   if (!id) return null
+
   const favouriteLists = useAppSelector(selectAllFavouriteLists);
+  const dispatch = useAppDispatch();
+  const listItem = useRef();
+
+  const noFavouritLists = favouriteLists.length === 0;
+
+
+  function handleItemClick({ data }: any) {
+    dispatch(addToFavouriteList(data));
+  }
 
   return (
-    <>
-      {favouriteLists.map((list) => {
-        { list }
-      })}
-      <ContextMenu id={id}>
-        {favouriteLists.length === 0
-          ?
-          <MenuItem><LinkItem url='/favourites' name='>First create a list' /></MenuItem>
-          :
-          <>
-            <MenuItem>uno</MenuItem>
-            <MenuItem>duo</MenuItem>
-            {favouriteLists.map((list) => {
-              <MenuItem>{list}</MenuItem>
-            })
-            }
-          </>
-        }
-      </ContextMenu>
-    </>
+    <Menu id={id}>
+      {noFavouritLists
+        ?
+        <Item><LinkItem url='/favourites' name='Create a list' /></Item>
+        :
+        favouriteLists.map((listItem) => (
+          <Item data={{ list: listItem, song: id }} onClick={handleItemClick} key={listItem}>{listItem}</Item>
+        ))}
+    </Menu>
   );
 }
 

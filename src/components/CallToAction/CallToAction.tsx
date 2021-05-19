@@ -1,30 +1,30 @@
 import React from "react";
-import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import AddToFavourite from 'components/AddToFavourite'
+import { useContextMenu } from "react-contexify";
 
 interface CallToAction {
   name: string | undefined;
 }
 
-
+const MENU_ID = "menu-id";
 function CallToAction(props: CallToAction): JSX.Element | null {
   const { name } = props;
+
   if (!name) {
     return null;
   }
-  const addToList = (): void => {
-    // alert(`listItem", ${name}, "is added to you're list`);
-  };
+
+  const { show } = useContextMenu({ id: name });
+
   return (
     <>
-      <ContextMenuTrigger id={name}>
+      <div onClick={show}>
         <span
           data-testid="cta-list-item"
-          onClick={addToList}
         >
           {name}
         </span>
-      </ContextMenuTrigger>
+      </div>
       <AddToFavourite id={name} />
     </>
   );
