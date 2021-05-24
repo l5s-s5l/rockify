@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import List from "components/List"
 import { getData, Artist } from "api/getData";
-import { LINK } from "const";
+import { LIST_TYPE } from "const";
 
 function Artists(): JSX.Element {
   const [data, setData] = useState<Artist[] | null>(null);
@@ -13,7 +13,7 @@ function Artists(): JSX.Element {
     getArtists();
   }, []);
 
-  return <List data={data} type={LINK} contentType='artist' />
+  return <List data={data} type={LIST_TYPE.LINK} contentType='artist' />
 }
 
 export default Artists;

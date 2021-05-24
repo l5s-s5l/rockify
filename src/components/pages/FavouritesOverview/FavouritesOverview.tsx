@@ -3,14 +3,18 @@ import { selectAllFavouriteLists } from 'slices/favouriteList'
 import { useAppSelector } from 'hooks/store';
 import List from 'components/List'
 import CreateList from 'components/CreateList'
-import { LINK } from 'const'
+import { LIST_TYPE } from 'const'
 
 function FavouritesOverview(): JSX.Element | null {
   const favouriteLists = useAppSelector(selectAllFavouriteLists);
   return (
     <>
       <CreateList />
-      <List data={favouriteLists} type={LINK} contentType={'favourite'} />
+      {favouriteLists.length ?
+        <List data={favouriteLists} type={LIST_TYPE.LINK} contentType={'favourite'} />
+        :
+        <h2>{`I looks like you haven't created a favourite list yet`}</h2>
+      }
     </>
   )
 }
