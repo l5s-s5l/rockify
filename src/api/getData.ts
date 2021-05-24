@@ -5,6 +5,11 @@ export interface Artist {
   name?: string;
 }
 
+export interface Favourite {
+  id?: number;
+  name?: string;
+}
+
 export interface Song {
   id?: number;
   name?: string;
