@@ -2,10 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import favouriteListReducer from 'slices/favouriteList';
 
 export const store = configureStore({
-    reducer: {
-        favourites: favouriteListReducer
-    },
-
+  reducer: {
+    favourites: favouriteListReducer
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
