@@ -31,8 +31,8 @@ export const getData = async (
 ): Promise<Artist[] | Song[]> => {
   try {
     const url = query
-      ? `http://localhost:3004/${type}?artist=${query}`
-      : `http://localhost:3004/${type}`;
+      ? `http://localhost:3005/${type}?artist=${query}`
+      : `http://localhost:3005/${type}`;
 
     const { data } = await axios.get(url);
     return data;
