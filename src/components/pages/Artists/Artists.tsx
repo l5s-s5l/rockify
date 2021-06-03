@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import List from "components/List"
+import List from "components/List";
 import { getData, Artist } from "api/getData";
-import { LIST_TYPE } from "const";
+import LinkItem from "components/LinkItem";
 
 function Artists(): JSX.Element {
   const [data, setData] = useState<Artist[] | null>(null);
@@ -13,7 +13,19 @@ function Artists(): JSX.Element {
     getArtists();
   }, []);
 
-  return <List data={data} type={LIST_TYPE.LINK} contentType='artist' />
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+
+  const listItems = data.map((listItem: Artist) => (
+    <LinkItem
+      key={listItem.id}
+      name={listItem.name}
+      url={`/artist/${listItem.name}`}
+    />
+  ));
+
+  return <List>{listItems}</List>;
 }
 
 export default Artists;

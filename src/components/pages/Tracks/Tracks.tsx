@@ -1,22 +1,45 @@
 import React, { useEffect, useState } from "react";
-import List from "components/List"
+import List from "components/List";
 import { getData, Song } from "api/getData";
+import { useContextMenu } from "react-contexify";
 import { useParams } from "react-router-dom";
-import { LIST_TYPE, CTA_EVENT } from "const";
+import CallToAction from "components/CallToAction";
 
 function Track(): JSX.Element {
-    const [data, setData] = useState<Song[] | null>(null);
-    const { artist } = useParams<{ artist: string }>();
-    const getTracks = async () => {
-        const songs = await getData("songs", artist);
-        setData(songs);
-    };
+  const [data, setData] = useState<Song[] | null>(null);
+  const { artist } = useParams<{ artist: string }>();
+  const { show } = useContextMenu();
+  const getTracks = async () => {
+    const songs = await getData("songs", artist);
+    setData(songs);
+  };
 
-    useEffect(() => {
-        getTracks();
-    }, []);
+  useEffect(() => {
+    getTracks();
+  }, []);
 
-    return <List event={CTA_EVENT.ADD_TO_LIST} type={LIST_TYPE.CTA} data={data} />
+  const onClickHandler = (e: React.MouseEvent, id: string) => {
+    show(e, {
+      id: id,
+    });
+  };
+
+  if (!data) return <p>Loading...</p>;
+
+  const listItems = data.map((listItem: Song) => (
+    <CallToAction
+      clickHandler={onClickHandler}
+      key={listItem.id}
+      name={listItem.name}
+    />
+  ));
+
+  return (
+    <>
+      <h1>Tracks</h1>
+      <List>{listItems}</List>
+    </>
+  );
 }
 
 export default Track;
