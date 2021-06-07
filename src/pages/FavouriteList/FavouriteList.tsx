@@ -23,7 +23,7 @@ function FavouriteList(): JSX.Element | null {
   if (list && !list.length)
     return <h2>{`It looks like you ca use some tracks here`}</h2>;
 
-  const listItems = list.map((listItem: string) => (
+  const listItems = list?.map((listItem: string) => (
     <CallToAction
       clickHandler={onClickHandler}
       key={listItem}

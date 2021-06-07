@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import List from "components/List";
-import { getData, Song } from "api/getData";
+import { Song } from "types";
 import { useContextMenu } from "react-contexify";
 import { useParams } from "react-router-dom";
 import CallToAction from "components/CallToAction";
+import useFetchData from "hooks/useFetchData";
 
 function Track(): JSX.Element {
-  const [data, setData] = useState<Song[] | null>(null);
-  const { artist } = useParams<{ artist: string }>();
   const { show } = useContextMenu();
-  const getTracks = async () => {
-    const songs = await getData("songs", artist);
-    setData(songs);
-  };
-
-  useEffect(() => {
-    getTracks();
-  }, []);
+  const { artist } = useParams<{ artist: string }>();
+  const { data, isLoading, error } = useFetchData({
+    type: "songs",
+    query: artist,
+  });
 
   const onClickHandler = (e: React.MouseEvent, id: string) => {
     show(e, {
@@ -24,7 +20,8 @@ function Track(): JSX.Element {
     });
   };
 
-  if (!data) return <p>Loading...</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (error || !data) return <p>Something went wrong...</p>;
 
   const listItems = data.map((listItem: Song) => (
     <CallToAction
@@ -36,7 +33,7 @@ function Track(): JSX.Element {
 
   return (
     <>
-      <h1>Tracks</h1>
+      <h1>{artist}</h1>
       <List>{listItems}</List>
     </>
   );

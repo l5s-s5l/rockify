@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import List from "components/List";
-import { getData, Artist } from "api/getData";
+import { Artist } from "types";
 import LinkItem from "components/LinkItem";
+import useFetchData from "hooks/useFetchData";
 
 function Artists(): JSX.Element {
-  const [data, setData] = useState<Artist[] | null>(null);
-  const getArtists = async () => {
-    const artists = await getData("artists");
-    setData(artists);
-  };
-  useEffect(() => {
-    getArtists();
-  }, []);
+  const { data, isLoading, error } = useFetchData({ type: "artists" });
 
-  if (!data) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  const listItems = data.map((listItem: Artist) => (
+  if (error || !data) {
+    return <p>something went wrong...</p>;
+  }
+
+  const listItems = data?.map((listItem: Artist) => (
     <LinkItem
       key={listItem.id}
       name={listItem.name}
